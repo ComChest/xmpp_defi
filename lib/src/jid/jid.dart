@@ -8,10 +8,7 @@ class JID{
   String domain;
   String resource;
 
-
   JID(this.user, this.domain, {this.resource = 'comchest'}) {
-    this.user = user;
-    this.domain = domain;
     this.resource = resource + Random.secure().toString()
   }
 
@@ -19,23 +16,19 @@ class JID{
 }
 
 class SocialJID extends JID{
-  FinJID(user, domain, {String resource = 'comchest'}) : super(user, domain) {
-    this.user = user;
-    this.domain = domain;
+  SocialJID(user, domain, {String resource = 'comchest'}) : super(user, domain) {
     this.resource = resource + Random.secure().toString()
   }
 }
 
 class FinJID extends JID{
   int pubkey;
-  String digestID;
+  late String digestID;
 
   FinJID(user, domain, this pubkey, {String resource = 'comchest'}) : super(user, domain) {
-    this.user = user;
-    this.domain = domain;
-    this.resource = resource + Random.secure().toString()
     Argon2BytesGenerator argon = Argon2BytesGenerator();
-    //this.digest = argon.deriveKey(inp, , out, outOff).toString()
+    this.digestID = "";
+    //this.digestID = argon.deriveKey(inp, , out, outOff).toString()
 
   }
 }
