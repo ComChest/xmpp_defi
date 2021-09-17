@@ -1,6 +1,6 @@
 name: xmpp_defi
 
-description: "XMPP Defi is library for decentralized finance written in Dart."
+description: "xmpp-defi is library for decentralized finance written in Dart."
 
 version: 0.1.1
 
@@ -12,3 +12,4 @@ environment:
 dependencies: 
   pointycastle: ^3.3.1
   xmpp_stone: ^0.4.0-dev.1
+  cryptography: ^2.0.2
