@@ -1,7 +1,6 @@
-import 'dart:html';
 import 'package:cryptography/cryptography.dart';
 import 'dart:math';
-import 'dart:convert';
+import 'dart:convert';\=
 
 class Resource{ //AKA Device
   String label = 'ComChest';

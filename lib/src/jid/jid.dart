@@ -1,19 +1,33 @@
-import 'dart:html';
 import 'package:cryptography/cryptography.dart';
 import 'dart:math';
 import 'dart:convert';
-import 'package:xmpp_defi/resource.dart';
+import 'package:xmpp_defi/src/jid/resource.dart';
 
-import 'package:cryptography/dart.dart';
 
+/// A typedef for [JID._shouldCascade].
+typedef _ShouldCascade = bool Function(Response response);
+
+/// A helper that calls several handlers in sequence and returns the first
+/// acceptable response.
+///
+/// By default, a response is considered acceptable if it has a status other
+/// than 404 or 405; other statuses indicate that the handler understood the
+/// request.
+///
+/// If all handlers return unacceptable responses, the final response will be
+/// returned.
+///
+/// ```dart
+///  JID otherJID = new JID(otherUser, otherDomain, otherResource)
+/// ```
 
 class JID{
   String user;
   String domain;
   Resource _resource;
   List<Resource> _selfResources = [];
-  Map<String, List<Resource>> contactsSJIDs = Map();
-  Map<String, List<Resource>> contactsFJIDs =  Map();
+  Map<String, List<Resource>> contactsSIDs = Map();
+  Map<String, List<Resource>> contactsFIDs =  Map();
   final signatureAlgorithm = Ed25519();
 
   JID(this.user, this.domain, this._resource) {}
@@ -23,19 +37,19 @@ class JID{
   }
 }
 
-class SocialJID extends JID{
+class SocID extends JID{
 
-  SocialJID(String user, String domain, Resource Resource) : super(user, domain, Resource) {
+  SocID(String user, String domain, Resource Resource) : super(user, domain, Resource) {
 
   }
 }
 
-MakeSJID(String user, String domain, {resourceID = "Comchest"}){
-  return SocialJID(user, domain, Resource(resourceID + Random.secure().toString()));
+MakeSID(String user, String domain, {resourceID = "ComChest"}){
+  return SocID(user, domain, Resource(resourceID + Random.secure().toString()));
 }
 
-class MySJID extends SocialJID{
-  MySJID(String user, String domain, this._selfKeyPair, this._userKeyPair, {String resource = 'Comchest'}) : super(user, domain) {
+class MySID extends SocID{
+  MySID(String user, String domain, this._selfKeyPair, this._userKeyPair, {String resource = 'ComChest'}) : super(user, domain) {
   }
 
   getPubSelfKey(){
@@ -56,10 +70,10 @@ class MySJID extends SocialJID{
 
 }
 
-class MasterSJID extends MySJID{ //ByDefault encrypt MasterKey with ArgonID of password.
+class MasterSID extends MySID{ //ByDefault encrypt MasterKey with ArgonID of password.
   SimpleKeyPairData _masterKeyPair;
   // Sign
-  MasterSJID(user, domain, _selfKeyPair, _userKeyPair, this._masterKeyPair, {String resource = 'Comchest'}) : super(user, domain, _selfKeyPair, _userKeyPair) {
+  MasterSID(user, domain, _selfKeyPair, _userKeyPair, this._masterKeyPair, {String resource = 'ComChest'}) : super(user, domain, _selfKeyPair, _userKeyPair) {
     this.resource = resource + Random.secure().toString();
   }
 
@@ -72,31 +86,29 @@ class MasterSJID extends MySJID{ //ByDefault encrypt MasterKey with ArgonID of p
   }
 }
 
-class FinJID extends JID{
-  var SecondarySJIDs = new Map();
-  FinJID(user, domain, _resource) : super(user, domain, _resource) {}
+class FinID extends JID{
+  var SecondarySIDs = new Map();
+  FinID(user, domain, _resource) : super(user, domain, _resource) {}
 }
 
-class MyFJID extends FinJID{
+class MyFID extends FinID{
   int pubkey;
-  String PrimarySJID;
-
-
-  MyFJID(user, domain, this.pubkey, this.PrimarySJID, {resource = 'Comchest'}) : super(user, domain) {
+  String PrimarySID;
+  
+  MyFID(user, domain, this.pubkey, this.PrimarySID, {resource = 'ComChest'}) : super(user, domain) {
 
   }
-
 }
 
-MakeFJID(domain, int pubkey, PrimarySJID, {String resourceName = 'ComChest'}) async {
+MakeFID(domain, int public_key, PrimarySID, {String resourceName = 'ComChest'}) async {
   final hmac = Hmac.sha256();
   final message = utf8.encode(domain);
-  final pubKey = SecretKey([pubkey]);
-  final mac = await hmac.calculateMac(message, secretKey: pubKey);
-  return MyFJID(base64.encode(mac.bytes).replaceAll(new RegExp(r'[^\w\s]+'), ''), domain, pubkey, PrimarySJID);
+  final pubKey = SecretKey([public_key]);
+  final mac = await hmac.calculateMac(message, secretKey: public_key);
+  return MyFID(base64.encode(mac.bytes).replaceAll(new RegExp(r'[^\w\s]+'), ''), domain, public_key, PrimarySID);
 }
 
 void main() async {
-  var testFJID = await MakeFJID("akcu.org", 313691, "aeneas@akcu.org");
-  print(testFJID.user);
+  var testFID = await MakeFID("akcu.org", 313691, "aeneas@akcu.org");
+  print(testFID.user);
 }
