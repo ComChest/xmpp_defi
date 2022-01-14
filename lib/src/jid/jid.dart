@@ -70,7 +70,8 @@ class MySID extends SocID{
 
 }
 
-class MasterSID extends MySID{ //ByDefault encrypt MasterKey with ArgonID of password.
+///By default encrypt MasterKey with ArgonID of password.
+class MasterSID extends MySID{
   SimpleKeyPairData _masterKeyPair;
   // Sign
   MasterSID(user, domain, _selfKeyPair, _userKeyPair, this._masterKeyPair, {String resource = 'ComChest'}) : super(user, domain, _selfKeyPair, _userKeyPair) {
@@ -101,10 +102,10 @@ class MyFID extends FinID{
 }
 
 MakeFID(domain, int public_key, PrimarySID, {String resourceName = 'ComChest'}) async {
-  final hmac = Hmac.sha256();
+  final hMAC = Hmac.sha256();
   final message = utf8.encode(domain);
   final pubKey = SecretKey([public_key]);
-  final mac = await hmac.calculateMac(message, secretKey: public_key);
+  final mac = await hMAC.calculateMac(message, secretKey: public_key);
   return MyFID(base64.encode(mac.bytes).replaceAll(new RegExp(r'[^\w\s]+'), ''), domain, public_key, PrimarySID);
 }
 
