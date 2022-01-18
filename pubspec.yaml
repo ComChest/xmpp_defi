@@ -1,7 +1,10 @@
 name: xmpp_defi
 
+
 description: >-
   xmpp-defi is a library for decentralized finance written in Dart.
+
+description: xmpp-defi is a library for decentralized finance written in Dart for crossplatform applications including web apps.
 
 repository: github.com/comchest/xmpp-defi
 
@@ -12,10 +15,12 @@ homepage: communitychest.io
 environment:
   sdk: '>=2.15.1 <3.0.0'
 
-dependencies: 
+
+dependencies:
   xmpp_stone: ^0.4.3-dev.1
   cryptography: ^2.0.5
   universal_io: ^2.0.4
+  libsignal_protocol_dart: ^0.5.5
 
 dev_dependencies:
   test: ^1.18.2
