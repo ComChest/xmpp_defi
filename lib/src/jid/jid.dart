@@ -50,28 +50,13 @@ class SocialID extends JID{
 }
 
 MakeThisSID(String user, Domain domain, {resourceID = "ComChest"}){
-  return SocialID(user, domain, Resource(resourceID, Random.secure().toString()));
+  return SocialID(user, domain, Resource(resourceID, DateTime.now()));
 }
 
 class MySID extends SocialID{
   MySID(String user, Domain domain, this._selfKeyPair, this._userKeyPair, {String resource = 'ComChest'}) : super(user, domain) {
   }
 
-  getPubSelfKey(){
-    return _selfKeyPair.extractPublicKey();
-  }
-
-  getPubUserKey(){
-    return _userKeyPair.extractPublicKey();
-  }
-
-  signSelf(self){
-    return signatureAlgorithm.sign([self], keyPair: _selfKeyPair);
-  }
-
-  signUser(user){
-    return signatureAlgorithm.sign([user], keyPair: _userKeyPair);
-  }
 }
 
 ///By default encrypt MasterKey with ArgonID of password.
@@ -111,11 +96,11 @@ MakeFID(domain, int public_key, PrimarySID, {String resourceName = 'ComChest'}) 
   final hMAC = Hmac.sha256();
   final message = utf8.encode(domain);
   final pubKey = SecretKey([public_key]);
-  final mac = await hMAC.calculateMac(message, secretKey: public_key);
+  final mac = await hMAC.calculateMac(message, secretKey: pubKey);
   return MyFID(base64.encode(mac.bytes).replaceAll(new RegExp(r'[^\w\s]+'), ''), domain, public_key, PrimarySID);
 }
 
 void main() async {
-  var testFID = await MakeFID("akcu.org", 313691, "aeneas@akcu.org");
+  var testFID = await MakeFID("cc.credit_union", 313691, "aeneas@comchest.org");
   print(testFID.user);
 }
