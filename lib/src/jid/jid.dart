@@ -39,7 +39,6 @@ class JIDResources extends BareJID{
   Map<BareJID, List<Resource>> contactsFIDs =  Map();
 
   JIDResources(String user, Domain domain, this._resources) : super(user, domain) {}
-
 }
 
 class SocialID extends JID{
@@ -53,13 +52,14 @@ MakeThisSID(String user, Domain domain, {resourceID = "ComChest"}){
   return SocialID(user, domain, Resource(resourceID, DateTime.now()));
 }
 
-class MySID extends SocialID{
+/* class MySID extends SocialID{
   MySID(String user, Domain domain, this._selfKeyPair, this._userKeyPair, {String resource = 'ComChest'}) : super(user, domain) {
   }
 
 }
+*/
 
-///By default encrypt MasterKey with ArgonID of password.
+
 /*class MasterSID extends MySID{
   SimpleKeyPairData _masterKeyPair;
   // Sign
@@ -87,7 +87,7 @@ class MyFID extends FinID{
   int pubkey;
   String PrimarySID;
 
-  MyFID(user, domain, this.pubkey, this.PrimarySID, {resource = 'ComChest'}) : super(user, domain) {
+  MyFID(user, domain, this.pubkey, this.PrimarySID, {resource}) : super(user, domain, resource) {
 
   }
 }

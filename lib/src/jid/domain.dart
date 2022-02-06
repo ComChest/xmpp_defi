@@ -1,6 +1,5 @@
 import 'dart:math';
 
-
 class Domain {
   String domainName;
   bool whiteListed = false;
@@ -8,7 +7,6 @@ class Domain {
 }
 
 class FinancialDomain extends Domain{
-  String domainName;
   bool whiteListed = false;
-  FinancialDomain(this.domainName){}
+  FinancialDomain(domainName) : super(domainName){}
 }

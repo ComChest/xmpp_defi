@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d85213ec-ee17-4fa5-85c7-2a38b0c483f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/jid/domain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/domain.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/jid/jid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/jid.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/jid/resource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/resource.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +111,11 @@
           <url>file://$PROJECT_DIR$/test/masterkeytest.dart</url>
           <line>14</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/src/jid/domain.dart</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

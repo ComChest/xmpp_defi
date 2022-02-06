@@ -1,5 +1,6 @@
 import 'package:cryptography/cryptography.dart';
 import 'dart:math';
+import 'dart:convert';
 import 'package:universal_io/io.dart' show Platform;
 
 var rng = new Random();
@@ -33,6 +34,20 @@ class Resource{ ///AKA Device
 
   getRID(){
     return _label + _dateID.toString();
+  }
+
+  verifyPubKey(PublicKey publicKey, Signature signature) {
+    signatureAlgorithm.verify(
+        publicKey,
+        signature: signature
+    )
+  }
+
+  verifyMsg(String message, Signature signature){
+    signatureAlgorithm.verify(
+        utf8.encode(message),
+        signature: signature
+    )
   }
 }
 
