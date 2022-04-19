@@ -2,6 +2,9 @@ import 'package:cryptography/cryptography.dart';
 import 'dart:math';
 import 'dart:convert';
 import 'package:universal_io/io.dart' show Platform;
+import 'package:bip39/bip39.dart';
+//import 'package:dart_merkle_lib/dart_merkle_lib.dart';
+import 'package:bs58/bs58.dart';
 
 var rng = new Random();
 /// Calling the third part of the XMPP address "device" is common in XMPP but
@@ -11,20 +14,40 @@ var rng = new Random();
 class Resource{ ///AKA Device
   String _label;
   ///XEP-0384 Says Resource ID must be unique, probably to bareJID
-  DateTime _dateID;
+  /// and it says it must be between  1 and 2^32-1
+  late int _rID;
+  DateTime _objDate = DateTime.now();
+  DateTime? _dateID;
   final signatureAlgorithm = Ed25519();
   Map<String, Signature> userPublicKeys  = new Map();
   Map<SimplePublicKey, Signature> userKeySignatures = new Map();
   List<SimplePublicKey> selfPublicKeys = List.empty(growable: true);
   Map<SimplePublicKey, Signature> selfKeySignatures = new Map();
 
-  Resource(this._label, this._dateID){}
-  setRID(String label, DateTime dateID){
+  Resource(this._label){
+    _dateID = _objDate;
+    _rID = max(1, rng.nextInt(pow(2,32).toInt()-1));
+  }
+
+  Resource.id(this._label, this._rID);
+
+  String get rID {
+    return _rID.toString();
+  }
+
+  String get resourceName {
+    return _label + this.rID + _dateID.toString();
+  }
+
+  void set dateID(DateTime dateID){
+    date
+  }
+  setRID(){
     _label = label;
     _dateID = dateID;
   }
 
-  getLabel(){
+  String get label{
     return _label;
   }
 
@@ -32,13 +55,13 @@ class Resource{ ///AKA Device
     return _dateID;
   }
 
-  getRID(){
+  getStamp(){
     return _label + _dateID.toString();
   }
 
   verifyPubKey(PublicKey publicKey, Signature signature) {
     signatureAlgorithm.verify(
-        publicKey,
+        publicKey.toString(),
         signature: signature
     )
   }
@@ -124,6 +147,7 @@ class MasterSignedResource extends ThisResource{
   }
 }
 
+///Private Key should be encrypted with Argon2ID of a password
 //class masterResource extends MasterSignedResource{}
 
 

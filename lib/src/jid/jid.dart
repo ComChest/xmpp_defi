@@ -8,11 +8,10 @@ import 'package:xmpp_defi/src/jid/domain.dart';
 class BareJID{
   String user;
   Domain domain;
-  BareJID(this.user, this.domain) {}
-
-  getBareJID(){
+  String get bareJID {
     return user + "@" + domain.domainName;
   }
+  BareJID(this.user, this.domain) {}
 }
 
 /// A typedef for [JID.getJID].
@@ -26,8 +25,11 @@ typedef getJID = String Function();
 
 class JID extends BareJID{
   Resource _resource;
-  JID(String user, domain, this._resource) : super(user, domain) {}
 
+  String get getJID {
+    return user + "@" + domain.domainName;
+  }
+  JID(String user, domain, this._resource) : super(user, domain) {}
   getJID(){
     return user + "@" + domain.domainName + "/" + _resource.getRID();
   }

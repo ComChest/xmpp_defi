@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d85213ec-ee17-4fa5-85c7-2a38b0c483f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/src/omemo/x3dhdoubleratchet.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/jid/domain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/domain.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/jid/jid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/jid.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/jid/resource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/resource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/storage/indexeddb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/indexeddb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/storage/sqlite.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/sqlite.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +57,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="dart.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -121,7 +125,12 @@
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
+    <expand>
+      <path>
+        <item name="xmpp-defi" type="b2602c69:ProjectViewProjectNode" />
+        <item name="xmpp-defi" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
     <select />
   </component>
 </project>
