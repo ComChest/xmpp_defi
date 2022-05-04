@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d85213ec-ee17-4fa5-85c7-2a38b0c483f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/omemo/x3dhdoubleratchet.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/jid/platformdevice.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/jid/jid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/jid.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/jid/resource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/jid/resource.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/storage/indexeddb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/indexeddb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/storage/FID-CAs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/FID-CAs.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/storage/sqlite.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/sqlite.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xmpp_defi.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xmpp_defi.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/crossplatform_connection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/crossplatform_connection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/digital_signatures_fingerprints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/digital_signatures_fingerprints.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/masterkeytest.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/masterkeytest.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/scram_sasl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/scram_sasl.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

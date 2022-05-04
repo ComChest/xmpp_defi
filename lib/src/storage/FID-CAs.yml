@@ -1,9 +1,20 @@
 CADomains:
   akcu.org:
     vault:
-      MasterPubKey: se5ygh5shsee5hxu635378982hdr734gs
-      UserPubKey2022: 3f345hj565iikj3h24gjedjjh6hs5rn1
-      UserPubKey2023: adsf322lk6jg91f0hjnasd0foiij2209
-      UserPubKey2024: 3263wytsddfgh454hdfh45hegreg4365
+      MasterKeyRefs:
+        Ed25519:
+          2024: se5ygh5shsee5hxu635378982hdr734gs2lk6j
+          2026: 3f345hj565iikj3h24gjedjjh6hs5rn12lhs5r
+          2028: adsf322lk6jg91f0hjnasd0foiij22092lkvl4
+          2030: 3263wytsddfgh454hdfh45hegreg436592lk6e
+        XMSS:
+          2024: adsf322lk6jg91f0hjnasd0foiij22092lkvl4
+          2025: 7hs5rn123263wytsddfgfh45hegreg436592lk
+          2026: ee5hxu635378982hdr734gs2lk6jse5ygh5shs
+          2027: 6eh454hd3f345hj565iijhlhs5rkj3h24gjedj
+          2028: fdsf23Hfadsf3220hjnasd0foiij22092lkvl4
+          2029: 243dfh4ryhdfh45hegreg436592lk6etsddfgh
+          2030: 6eh454hd3dsfsad565iijhlhs5rkj3h24gjedj
+
 
 

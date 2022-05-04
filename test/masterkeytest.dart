@@ -7,8 +7,8 @@ import 'dart:convert';
 
 final signatureAlgorithm = Ed25519();
 
-
 Future<void> main() async {
+  /*
   final masterSignKeyPair = signatureAlgorithm.newKeyPair();
   print(masterSignKeyPair.toString());
   signature = signatureAlgorithm.sign(List[1], masterSignKeyPair)
@@ -18,4 +18,5 @@ Future<void> main() async {
   print(selfSignKeyPair.toString());
   final userSignKeyPair = signatureAlgorithm.newKeyPair();
   print(userSignKeyPair.toString());
+  */
 }

@@ -3,7 +3,8 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:universal_io/io.dart' show Platform;
 import 'package:bip39/bip39.dart';
-//import 'package:dart_merkle_lib/dart_merkle_lib.dart';
+// To add when :
+// import 'package:dart_merkle_lib/dart_merkle_lib.dart';
 import 'package:bs58/bs58.dart';
 
 var rng = new Random();
@@ -13,12 +14,14 @@ var rng = new Random();
 
 class Resource{ ///AKA Device
   String _label;
-  ///XEP-0384 Says Resource ID must be unique, probably to bareJID
-  /// and it says it must be between  1 and 2^32-1
+  /// XEP-0384 Says Resource ID must be unique (probably to bareJID)
+  /// and it says it must be between 1 and 2^32-1
   late int _rID;
   DateTime _objDate = DateTime.now();
-  DateTime? _dateID;
-  final signatureAlgorithm = Ed25519();
+  late DateTime _dateID;
+  // Will add branch date for XMSS
+  get signatureAlgorithm {Ed25519();}
+  Platform? resourcePlatform;
   Map<String, Signature> userPublicKeys  = new Map();
   Map<SimplePublicKey, Signature> userKeySignatures = new Map();
   List<SimplePublicKey> selfPublicKeys = List.empty(growable: true);
@@ -30,65 +33,76 @@ class Resource{ ///AKA Device
   }
 
   Resource.id(this._label, this._rID);
+  Resource.load(this._label, this._rID, this._dateID);
 
   String get rID {
     return _rID.toString();
   }
 
   String get resourceName {
-    return _label + this.rID + _dateID.toString();
+    return _label + '-'+ rID + '-' + _dateID.toString();
   }
 
   void set dateID(DateTime dateID){
-    date
-  }
-  setRID(){
-    _label = label;
     _dateID = dateID;
   }
 
-  String get label{
-    return _label;
-  }
-
-  getDateID(){
+  DateTime get dateID{
     return _dateID;
   }
 
-  getStamp(){
-    return _label + _dateID.toString();
+  String get label {
+    return _label;
   }
 
-  verifyPubKey(PublicKey publicKey, Signature signature) {
-    signatureAlgorithm.verify(
-        publicKey.toString(),
+
+
+  verifyMsg(List <int> message, Signature signature){
+    return signatureAlgorithm.verify(
+        message,
         signature: signature
-    )
+    );
   }
 
-  verifyMsg(String message, Signature signature){
-    signatureAlgorithm.verify(
-        utf8.encode(message),
-        signature: signature
-    )
+  verifyPubKey(PublicKey pubKey, Signature signature) {
+    return verifyMsg(utf8.encode(pubKey.toString()), signature);
   }
+
+  verifyKeyAddress(PublicKey pubKey, Signature signature) async {
+    final algorithm = Sha512();
+    final hash = await algorithm.hash(utf8.encode(pubKey.toString()));
+    return verifyMsg(hash.bytes, signature);
+  }
+
+  verifyKeyReference(String bareSID, int pubKey, Signature signature) async {
+    final hMAC = Hmac.sha512();
+    final mac = await hMAC.calculateMac(
+        utf8.encode(bareSID),
+        secretKey: SecretKey([pubKey])
+    );
+    return verifyMsg(mac.bytes, signature);
+  }
+
 }
 
 class PubKeyedResource extends Resource{
   SimplePublicKey publicKey;
+  String? ref
   ///Keys that have signed for this resource
   Map<SimplePublicKey, Signature> msgSignatures = new Map();
   //Map<int, Signature> msgSignatures = new Map();
-  PubKeyedResource(_label, _dateID, this.publicKey) : super(_label, _dateID){}
+  PubKeyedResource(_label, this.publicKey) : super(_label){}
 
   checkSignature(Signature signature){
 
   }
-
 }
 
 class ThisResource extends Resource{
   /// Our approach to signatures in XMPP: youtube.com/watch?v=oc5844dyrsc
+  /// We also support signing the address (hash of pubkey) or
+  /// reference (HMAC of pub key and XMPP address/bareJID) and
+  /// will support XMSS authentication https://datatracker.ietf.org/doc/html/rfc8391
   SimpleKeyPair _selfSignKeyPair;
   SimpleKeyPair _userSignKeyPair;
   Map<String, PubKeyedResource> selfPubKeyedResources = Map();
@@ -98,6 +112,10 @@ class ThisResource extends Resource{
       DateTime _dateID,
       this._selfSignKeyPair,
       this._userSignKeyPair) : super(_label, _dateID){}
+
+  String get default_label{
+    return Platform.operatingSystem + _rID;
+  }
 
   getPubSelfKey(){
     return _selfSignKeyPair.extractPublicKey();
