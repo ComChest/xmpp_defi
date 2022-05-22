@@ -1,20 +1,56 @@
-CADomains:
+# Use of this source code (and SHS) is governed by the MIT permissive license that can be found in the LICENSE file
+# The purpose of the below credentials is to maintain the security of CommunityChest through the Sturges Honor System (SHS)
+# SuccessorSigningKeyRef is: HMAC-SHA-512(SuccessorSigningPubKey, message = StringAppend("$[NextSuccessorSigningKeysRetirementYear]:[$NextSuccessorSigningKey]"))
+# MasterKeyRef is  HMAC-SHA-512(SuccessorSigningKeyRef, message = MasterSignature(NaturalSuccessorRef))
+# If there is no natural successor prepared they should put the type (e.g. 'Ed448') or NaturalSuccessorRef = 'none'
+# SuccessorSigningKeyRef is the first 32 bytes of the SuccessorSigningRef which is the HMAC-SHA-512(MasterPubKey, message = NaturalSuccessorsSigningKey)
+# This prepares for post Ed255[19] authentication if not post Edwards or DL-ECC
+
+CADomains2022:
   akcu.org:
     vault:
       MasterKeyRefs:
-        Ed25519:
-          2024: se5ygh5shsee5hxu635378982hdr734gs2lk6j
-          2026: 3f345hj565iikj3h24gjedjjh6hs5rn12lhs5r
-          2028: adsf322lk6jg91f0hjnasd0foiij22092lkvl4
-          2030: 3263wytsddfgh454hdfh45hegreg436592lk6e
+        Ed255:
+          2026: 7hs5rn123263wytsddfgfh45hegreg436592lk     #The master key this refers to retires in 2026 - 4-5 years from when it was made
+          2028: adsf322lk6jg91f0hjnasd0foiijhkr92lkvl4
+          2029: pdsfgrhfg78rtkjgjcvm3dg0d565ii3fdfg5h7
+          2030: se5ygh5shsee5hxu635378982hdr734gs2lk6j
+        Ed448:                                             #Ed448 also called Curve448
+          2035: adsf322lk6jg91f0hjnasd0foiij22092lkvlz
+      SuccessorSigningKeyRef:
         XMSS:
-          2024: adsf322lk6jg91f0hjnasd0foiij22092lkvl4
-          2025: 7hs5rn123263wytsddfgfh45hegreg436592lk
-          2026: ee5hxu635378982hdr734gs2lk6jse5ygh5shs
-          2027: 6eh454hd3f345hj565iijhlhs5rkj3h24gjedj
-          2028: fdsf23Hfadsf3220hjnasd0foiij22092lkvl4
-          2029: 243dfh4ryhdfh45hegreg436592lk6etsddfgh
+          2030: fdsf23Hfadsf3220hjnasd0foiilkvl4j22092     # Retires in 2030
+          2035:                                            # This reference SHOULD NOT be visible to the client, it reduces the key stretching protecting the Restoration Seed
+    ledger:
+      MasterKeyRefs:
+        Ed255:
+          2026: 243dfh4ryhdfh45hegreg436592lk6etsddfgh
+          2028: 3f345hj565iikj3h24gjedjjh6hs5rn12lhs5r
+          2029: sahegr3adsf322lk6jg9dg0d565ii3fdfg5h78
+          2030: 2g63wytsddfgh454hdfh45hegreg436592lk6e
+        Ed448:
+          2035: ee5hxu635378982hdr734gs2lk6jse5ygh5shs
+      SuccessorSigningKeyRef:
+        XMSS:
           2030: 6eh454hd3dsfsad565iijhlhs5rkj3h24gjedj
+          2035:     # This reference SHOULD NOT be visible to the client, it reduces the key stretching protecting the Restoration Info
 
 
+
+
+
+# The 32 bytes remaining from the Natural Successor's MasterKeyRef and its successor signing public keys are used to generate the master
+# private key retiring that year with HMAC-SHA-256(naturalSuccessorPubKey, message =
+
+# XMSS SuccessorSigner picks which how many of the n-first private keys to select from based on the years until its expiration
+# depending on the available promising algorithms in that year which are each assigned a key position for each year,
+# XMSS for a given year uses the same seed information to generate the same Signed Successor private key for a
+# given algorithm and its public key is used as the seed in moving through the tree.
+
+# if an XMSS key is signed as a successor, user signing or device signing keys then it picks the private key based on
+# the public keys or reference it will sign like a public key rescaled based on its maximum
+
+# SuccessorSigningKeyAddress are constructed from the HMAC(SuccessorSigningKey, message = bareJID\MasterExpYear)
+
+# Can use SCRAM to generate pre shared key with HMAC(Hash(ClientKey), Hash(ServerKey))
 

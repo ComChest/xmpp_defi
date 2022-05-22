@@ -1,4 +1,4 @@
-import 'package:universal_io' show Platform;
+import 'package:universal_io/io.dart' show Platform;
 
 class Util {
 

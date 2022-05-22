@@ -1,8 +1,8 @@
 import 'package:cryptography/cryptography.dart';
 import 'dart:math';
 import 'dart:convert';
-import 'package:xmpp_defi/src/jid/resource.dart';
-import 'package:xmpp_defi/src/jid/domain.dart';
+import 'package:xmpp_defi/src/entity/resource.dart';
+import 'package:xmpp_defi/src/entity/domain.dart';
 
 
 class BareJID{

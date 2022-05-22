@@ -13,14 +13,17 @@ var rng = new Random();
 /// We use username@domain/resource and user is username@domain
 
 class Resource{ ///AKA Device
-  String _label;
   /// XEP-0384 Says Resource ID must be unique (probably to bareJID)
   /// and it says it must be between 1 and 2^32-1
+  String _label;
   late int _rID;
   DateTime _objDate = DateTime.now();
   late DateTime _dateID;
   // Will add branch date for XMSS
-  get signatureAlgorithm {Ed25519();}
+  get signatureAlgorithm {return Ed25519();}
+  get baseHash {return Sha512();}
+  final hMAC = Hmac.sha512();
+
   Platform? resourcePlatform;
   Map<String, Signature> userPublicKeys  = new Map();
   Map<SimplePublicKey, Signature> userKeySignatures = new Map();
@@ -55,8 +58,6 @@ class Resource{ ///AKA Device
     return _label;
   }
 
-
-
   verifyMsg(List <int> message, Signature signature){
     return signatureAlgorithm.verify(
         message,
@@ -68,26 +69,31 @@ class Resource{ ///AKA Device
     return verifyMsg(utf8.encode(pubKey.toString()), signature);
   }
 
-  verifyKeyAddress(PublicKey pubKey, Signature signature) async {
-    final algorithm = Sha512();
-    final hash = await algorithm.hash(utf8.encode(pubKey.toString()));
-    return verifyMsg(hash.bytes, signature);
+  verifyKeyHash(PublicKey pubKey, Signature signature) async {
+    final digest = await baseHash.hash(utf8.encode(pubKey.toString()));
+    return verifyMsg(digest.bytes.sublist(0, 31), signature);
+  }
+
+  verifyKeyAddress(String domain, int pubKey, Signature signature) async {
+    final mac = await hMAC.calculateMac(
+      utf8.encode(domain),
+      secretKey: SecretKey([pubKey])
+    );
+    return verifyMsg(mac.bytes.sublist(0, 31), signature);
   }
 
   verifyKeyReference(String bareSID, int pubKey, Signature signature) async {
-    final hMAC = Hmac.sha512();
     final mac = await hMAC.calculateMac(
         utf8.encode(bareSID),
         secretKey: SecretKey([pubKey])
     );
-    return verifyMsg(mac.bytes, signature);
+    return verifyMsg(mac.bytes.bytes.sublist(0, 31), signature);
   }
-
 }
 
 class PubKeyedResource extends Resource{
   SimplePublicKey publicKey;
-  String? ref
+  String? ref;
   ///Keys that have signed for this resource
   Map<SimplePublicKey, Signature> msgSignatures = new Map();
   //Map<int, Signature> msgSignatures = new Map();
