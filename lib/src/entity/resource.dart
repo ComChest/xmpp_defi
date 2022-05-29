@@ -16,10 +16,6 @@ class Resource{ ///AKA Device
   /// XEP-0384 Says Resource ID must be unique (probably to bareJID)
   /// and it says it must be between 1 and 2^32-1
   String _label;
-  late int _rID;
-  DateTime _objDate = DateTime.now();
-  late DateTime _dateID;
-  // Will add branch date for XMSS
   get signatureAlgorithm {return Ed25519();}
   get baseHash {return Sha512();}
   final hMAC = Hmac.sha512();
@@ -30,21 +26,17 @@ class Resource{ ///AKA Device
   List<SimplePublicKey> selfPublicKeys = List.empty(growable: true);
   Map<SimplePublicKey, Signature> selfKeySignatures = new Map();
 
-  Resource(this._label){
-    _dateID = _objDate;
-    _rID = max(1, rng.nextInt(pow(2,32).toInt()-1));
-  }
-
-  Resource.id(this._label, this._rID);
-  Resource.load(this._label, this._rID, this._dateID);
+  Resource(this._label);
 
   String get rID {
     return _rID.toString();
   }
 
-  String get resourceName {
-    return _label + '-'+ rID + '-' + _dateID.toString();
+  String get label{
+    return _label;
   }
+
+
 
   void set dateID(DateTime dateID){
     _dateID = dateID;
@@ -87,24 +79,31 @@ class Resource{ ///AKA Device
         utf8.encode(bareSID),
         secretKey: SecretKey([pubKey])
     );
-    return verifyMsg(mac.bytes.bytes.sublist(0, 31), signature);
+    return verifyMsg(mac.bytes.sublist(0, 31), signature);
   }
 }
 
 class PubKeyedResource extends Resource{
-  SimplePublicKey publicKey;
+  /// Has pubkey(s) (and rid) for OMEMO
+  late int _rID;
+  SimplePublicKey _userPublicKey;  ///User Signing Key
+  SimplePublicKey _selfPublicKey;  ///Self Signing Key
   String? ref;
   ///Keys that have signed for this resource
   Map<SimplePublicKey, Signature> msgSignatures = new Map();
   //Map<int, Signature> msgSignatures = new Map();
-  PubKeyedResource(_label, this.publicKey) : super(_label){}
+  PubKeyedResource(super._label, this._userPublicKey,  this._selfPublicKey, this._rID);
 
+  SimplePublicKey userPublicKey
   checkSignature(Signature signature){
 
   }
 }
 
-class ThisResource extends Resource{
+class ThisResource extends PubKeyedResource{
+  DateTime _objDate = DateTime.now();
+  late DateTime _dateID;
+  // Will add branch date for XMSS
   /// Our approach to signatures in XMPP: youtube.com/watch?v=oc5844dyrsc
   /// We also support signing the address (hash of pubkey) or
   /// reference (HMAC of pub key and XMPP address/bareJID) and
@@ -117,12 +116,13 @@ class ThisResource extends Resource{
   ThisResource(String _label,
       DateTime _dateID,
       this._selfSignKeyPair,
-      this._userSignKeyPair) : super(_label, _dateID){}
+      this._userSignKeyPair, {super._rID});
 
-  String get default_label{
-    return Platform.operatingSystem + _rID;
+  String get label {
+    return rID.toString();
   }
 
+  // should overide
   getPubSelfKey(){
     return _selfSignKeyPair.extractPublicKey();
   }

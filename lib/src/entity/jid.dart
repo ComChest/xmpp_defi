@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:xmpp_defi/src/entity/resource.dart';
 import 'package:xmpp_defi/src/entity/domain.dart';
+import 'package:xmpp_defi/src/entity/domain.dart';
 
 
 class BareJID{
@@ -15,7 +16,7 @@ class BareJID{
 }
 
 /// A typedef for [JID.getJID].
-typedef getJID = String Function();
+typedef fullJID = String Function();
 
 /// Stands for Jabber ID (XMPP Address)
 /// We use username@domain/resource and username is user@domain
@@ -26,13 +27,11 @@ typedef getJID = String Function();
 class JID extends BareJID{
   Resource _resource;
 
-  String get getJID {
-    return user + "@" + domain.domainName;
+  String get fullJID {
+    return user + "@" + domain.domainName +"/" + _resource._label;
   }
-  JID(String user, domain, this._resource) : super(user, domain) {}
-  getJID(){
-    return user + "@" + domain.domainName + "/" + _resource.getRID();
-  }
+  JID(super.user, super.domain, this._resource);
+
 }
 
 class JIDResources extends BareJID{

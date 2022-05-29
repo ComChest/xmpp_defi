@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d85213ec-ee17-4fa5-85c7-2a38b0c483f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/entity/keyset.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/storage/database.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/storage/native.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/storage/tables.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/omemo/xmss.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/example.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/entity/jid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/jid.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/entity/platformdevice.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/platformdevice.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/entity/keyset.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/keyset.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/entity/resource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/resource.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/storage/FID-CAs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/FID-CAs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/storage/sqlite.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/sqlite.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/xmpp_defi.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xmpp_defi.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +40,9 @@
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="yj09i8m6" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1wscZATSAb3kucLB3b5ygsLYF8n" />
   <component name="ProjectViewState">
