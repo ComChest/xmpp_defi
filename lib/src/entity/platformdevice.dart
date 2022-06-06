@@ -1,7 +1,7 @@
 import 'package:universal_io/io.dart' show Platform;
 
 class Util {
-
+  final kIsWeb = false;
   os getPlatform() {
     if (kIsWeb) {
       return os.Web;

@@ -1,3 +1,3 @@
-import 'package:xmpp-defi/xmpp-defi.dart';
+import 'package:xmpp_defi/xmpp_defi.dart';
 
 

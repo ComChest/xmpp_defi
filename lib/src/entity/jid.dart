@@ -3,8 +3,6 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:xmpp_defi/src/entity/resource.dart';
 import 'package:xmpp_defi/src/entity/domain.dart';
-import 'package:xmpp_defi/src/entity/domain.dart';
-
 
 class BareJID{
   String user;
@@ -28,7 +26,7 @@ class JID extends BareJID{
   Resource _resource;
 
   String get fullJID {
-    return user + "@" + domain.domainName +"/" + _resource._label;
+    return user + "@" + domain.domainName +"/" + _resource.label;
   }
   JID(super.user, super.domain, this._resource);
 
@@ -44,13 +42,9 @@ class JIDResources extends BareJID{
 
 class SocialID extends JID{
   Map<String, List<Resource>> contactsSIDs = Map();
-  SocialID(String user,
-      Domain domain,
-      Resource resource) : super(user, domain, resource) {}
-}
-
-MakeThisSID(String user, Domain domain, {resourceID = "ComChest"}){
-  return SocialID(user, domain, Resource(resourceID, DateTime.now()));
+  SocialID(super.user,
+      super.domain,
+      super._resource){}
 }
 
 /* class MySID extends SocialID{

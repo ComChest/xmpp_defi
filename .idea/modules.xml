@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/xmpp-defi.iml" filepath="$PROJECT_DIR$/.idea/xmpp-defi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xmpp-defi.iml" filepath="$PROJECT_DIR$/.idea/xmpp_defi.iml" />
     </modules>
   </component>
 </project>

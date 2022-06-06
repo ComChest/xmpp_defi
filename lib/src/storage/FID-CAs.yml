@@ -1,9 +1,9 @@
-# Use of this source code (and SHS) is governed by the MIT permissive license that can be found in the LICENSE file
-# The purpose of the below credentials is to maintain the security of CommunityChest through the Sturges Honor System (SHS)
-# SuccessorSigningKeyRef is: HMAC-SHA-512(SuccessorSigningPubKey, message = StringAppend("$[NextSuccessorSigningKeysRetirementYear]:[$NextSuccessorSigningKey]"))
-# MasterKeyRef is  HMAC-SHA-512(SuccessorSigningKeyRef, message = MasterSignature(NaturalSuccessorRef))
+# Use of this source code (and SHS) is governed by MIT's permissive license that can be found in the LICENSE file
+# The purpose of the below credentials is to maintain the security of CommunityChest through SHS
+# SuccessorSigningKeyRef is: HMAC(SuccessorSigningPubKey, message = "$NextSuccessorSigningKeysRetirementYear:$NextSuccessorSigningKey")
+# MasterKeyRef is  HMAC(SuccessorSigningKeyRef, message = "MasterPubKey:$NaturalSuccessorAddress")
 # If there is no natural successor prepared they should put the type (e.g. 'Ed448') or NaturalSuccessorRef = 'none'
-# SuccessorSigningKeyRef is the first 32 bytes of the SuccessorSigningRef which is the HMAC-SHA-512(MasterPubKey, message = NaturalSuccessorsSigningKey)
+# SuccessorSigningKeyRef is the first 32 bytes of the SuccessorSigningRef which is the HMAC(MasterPubKey, message = NaturalSuccessorsSigningKey)
 # This prepares for post Ed255[19] authentication if not post Edwards or DL-ECC
 
 CADomains2022:

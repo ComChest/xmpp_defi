@@ -10,15 +10,15 @@ import 'dart:convert';
 // Successor plus Master Signing Keys
 // SelfSigningKeys
 
-SignatureAlgorithm defaultMasterAlgorithm = Ed25519();
-//SignatureAlgorithm defaultSuccesorSigningAlgorithm = [XMSS()];
+SignatureAlgorithm defaultResourceAlgorithm = Ed25519();
+SignatureAlgorithm defaultMasterAlgorithm = Ed25519(); //2030 Ed448()
+// SignatureAlgorithm defaultSuccesorSigningAlgorithm = [XMSS()];
 
 // Only one key, which essentially acts as Master, User, Signer and Self Signer
 class PubKeySet {
-  _signatureAlgorithm = defaultMasterAlgorithm;
-  get signatureAlgorithm {return _signatureAlgorithm}
-  get baseHash {return Sha512();}
-  final hMAC = Hmac.sha512();
+  get signatureAlgorithm {return defaultResourceAlgorithm;}
+  get baseHash {return Sha256();}
+  final hMAC = Hmac.sha256();
   SimplePublicKey _publicKey;
   SimplePublicKey get publicKey {
     return _publicKey;
@@ -27,7 +27,7 @@ class PubKeySet {
   PubKeySet(this._publicKey);
 
   String get keyReference{
-    return
+    return baseHash(defaultResourceAlgorithm);
   }
 
   verifyMsg(List <int> message, Signature signature){

@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d85213ec-ee17-4fa5-85c7-2a38b0c483f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/omemo/xmss.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/example.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/example.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/example.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/entity/jid.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/jid.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/entity/keyset.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/keyset.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/entity/platformdevice.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/platformdevice.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/entity/resource.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/entity/resource.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/omemo/xmss.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/omemo/xmss.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/storage/FID-CAs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/storage/FID-CAs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/digital_signatures_fingerprints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/digital_signatures_fingerprints.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +43,11 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/pubspec.lock" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="yj09i8m6" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="1" />
@@ -49,20 +57,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/lib/dart&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\aenea\Documents\GitHub\xmpp-defi\lib\src\storage" />
-      <recent name="C:\Users\aenea\Documents\GitHub\xmpp-defi\lib\src\resource" />
+      <recent name="C:\Users\aenea\Documents\GitHub\xmpp_defi\lib\src\storage" />
+      <recent name="C:\Users\aenea\Documents\GitHub\xmpp_defi\lib\src\resource" />
     </key>
   </component>
   <component name="RunManager" selected="Dart Test.Tests in masterkeytest.dart">
@@ -107,7 +112,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -123,8 +127,8 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
       <path>
-        <item name="xmpp-defi" type="b2602c69:ProjectViewProjectNode" />
-        <item name="xmpp-defi" type="462c0819:PsiDirectoryNode" />
+        <item name="xmpp_defi" type="b2602c69:ProjectViewProjectNode" />
+        <item name="xmpp_defi" type="462c0819:PsiDirectoryNode" />
       </path>
     </expand>
     <select />
